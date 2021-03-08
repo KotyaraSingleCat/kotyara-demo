@@ -1,5 +1,6 @@
 package com.kotyara.repository;
 
+import com.kotyara.api.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class JdbcRepositoryImpl<T> implements AbstractRespository {
+public final class JdbcRepositoryImpl implements AbstractRespository<User> {
 
   private JdbcTemplate jdbcTemplate;
 
@@ -18,12 +19,15 @@ public class JdbcRepositoryImpl<T> implements AbstractRespository {
   }
 
   @Override
-  public List<T> getAll() {
-    return null;
+  public List<User> getAll() {
+    return jdbcTemplate.query("SELECT * FROM user", ROW_MAPPER);
   }
 
   @Override
-  public void create() {
-
+  public void create(User user) {
+    jdbcTemplate.update("INSERT INTO user(firstName, lastName, email) VALUES (?, ?, ?)",
+                        user.getFirstName(),
+                        user.getSecondName(),
+                        user.getEmail());
   }
 }

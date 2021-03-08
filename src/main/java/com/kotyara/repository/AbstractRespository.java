@@ -14,5 +14,5 @@ public interface AbstractRespository<T> {
 
   List<T> getAll();
 
-  void create();
+  void create(T t);
 }
