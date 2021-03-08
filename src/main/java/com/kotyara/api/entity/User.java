@@ -1,4 +1,4 @@
-package com.kotyara.api.dto;
+package com.kotyara.api.entity;
 
 import lombok.*;
 

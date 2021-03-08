@@ -1,14 +1,15 @@
 package com.kotyara.repository;
 
-import com.kotyara.api.dto.User;
+import com.kotyara.api.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository
+@Component
 public final class JdbcRepositoryImpl implements AbstractRespository<User> {
 
   private JdbcTemplate jdbcTemplate;

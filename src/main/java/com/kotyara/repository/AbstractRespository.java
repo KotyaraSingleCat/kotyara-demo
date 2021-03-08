@@ -1,6 +1,7 @@
 package com.kotyara.repository;
 
-import com.kotyara.api.dto.User;
+import com.kotyara.api.dto.UserDTO;
+import com.kotyara.api.entity.User;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
