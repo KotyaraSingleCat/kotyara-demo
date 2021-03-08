@@ -1,0 +1,44 @@
+User attributes:
+1. First name
+2. Last name
+3. Email
+4. Role. A user can have one role: Admin, Developer, Analyst
+5. Role can have multiple action points (VIEW_ALL_RECORDS, VIEW_OWN_RECORDS, CREATE_TICKET, CLOSE_TICKET)
+
+
+Ticket attributes:
+1.	Name
+2.	Description
+3.	Assignee
+4.	Reporter
+5.	Status
+6.	Priority
+7.	Time spent
+8.	Time estimated
+9.  Created on date
+10. Type (user-story, epic, sub-task)
+
+IMPLEMENT
+a. User creation
+b. Role assignment
+c. Role delete
+d. User soft delete
+
+User actions:
+1.	Create ticket
+2.	Edit ticket (log time, change status, description etc)
+3.	My tickets list
+4.	Dashboard page
+    a.	Total time estimated by users
+    b.	Most time-expensive tasks
+5.	*** Implement your own  JQL for advanced search, start with this: https://www.atlassian.com/blog/jira-software/jql-the-most-flexible-way-to-search-jira-14
+
+
+
+
+View layer: Endpoints, simple UI
+Services layer: business logic, validators  etc
+Dao layer: MySQL, MongoDB?
++ security
++swagger
++flyway
