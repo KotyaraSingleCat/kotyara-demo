@@ -2,8 +2,7 @@ package com.kotyara.api.entity;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 public class User {
 
   private int id;
