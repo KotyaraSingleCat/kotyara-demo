@@ -2,8 +2,7 @@ package com.kotyara.api.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 public class UserDTO {
 
   private String firstName;
@@ -12,9 +11,12 @@ public class UserDTO {
 
   private String email;
 
-  public UserDTO(String firstName, String secondName, String email) {
+  private String password;
+
+  public UserDTO(String firstName, String secondName, String email, String password) {
     this.firstName = firstName;
     this.secondName = secondName;
     this.email = email;
+    this.password = password;
   }
 }

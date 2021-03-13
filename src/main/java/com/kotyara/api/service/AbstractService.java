@@ -3,6 +3,6 @@ package com.kotyara.api.service;
 import java.util.List;
 
 public interface AbstractService<T> {
-  void createUser(T t);
+  void create(T t);
   List<T> getAll();
 }

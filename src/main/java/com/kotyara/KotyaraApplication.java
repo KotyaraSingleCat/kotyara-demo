@@ -1,7 +1,7 @@
 package com.kotyara;
 
 import com.kotyara.api.entity.User;
-import com.kotyara.api.service.UserServiceImpl;
+import com.kotyara.api.service.AbstractService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +15,7 @@ import java.util.List;
 public class KotyaraApplication {
 
 	@Autowired
-	private UserServiceImpl userService;
+	private AbstractService userService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(KotyaraApplication.class, args);
@@ -23,9 +23,9 @@ public class KotyaraApplication {
 
 	@PostConstruct
 	public void postConstruct() {
-		userService.createUser(new User(0, "Kate", "Babanina", "babanina.ev@gmail.com"));
-		userService.createUser(new User(0, "Andrey", "Morozov", "moroz33@gmail.com"));
-		userService.createUser(new User(0, "Dima", "Koval", "world666@gmail.com"));
+		userService.create(new User(0, "Kate", "Babanina", "babanina.ev@gmail.com", "orange0540"));
+		userService.create(new User(0, "Andrey", "Morozov", "moroz33@gmail.com", "moroz"));
+		userService.create(new User(0, "Dima", "Koval", "world666@gmail.com", "12345678"));
 		List<User> users = userService.getAll();
 		for(User user: users){
 			log.info(String.format("\n Name: %s \n LastName: %s \n E-mail: %s", user.getFirstName(), user.getSecondName(), user.getEmail()));

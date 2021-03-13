@@ -11,14 +11,14 @@ import java.sql.ResultSet;
 import java.util.List;
 
 @Component
-public final class JdbcRepositoryImpl implements AbstractRepository<User> {
+public final class JdbcRepositoryUserImpl implements AbstractRepository<User> {
 
-  private final RowMapper<User> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> new User(resultSet.getInt("id"), resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("email"));
+  private final RowMapper<User> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> new User(resultSet.getInt("id"), resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("email"), resultSet.getString("password"));
 
   private final JdbcTemplate jdbcTemplate;
 
   @Autowired
-  public JdbcRepositoryImpl(DataSource dataSource) {
+  public JdbcRepositoryUserImpl(DataSource dataSource) {
     this.jdbcTemplate = new JdbcTemplate(dataSource);
   }
 
@@ -29,9 +29,10 @@ public final class JdbcRepositoryImpl implements AbstractRepository<User> {
 
   @Override
   public void create(User user) {
-    jdbcTemplate.update("INSERT INTO user(firstName, lastName, email) VALUES (?, ?, ?)",
+    jdbcTemplate.update("INSERT INTO user(firstName, lastName, email, password) VALUES (?, ?, ?, ?)",
                         user.getFirstName(),
                         user.getSecondName(),
-                        user.getEmail());
+                        user.getEmail(),
+                        user.getPassword());
   }
 }

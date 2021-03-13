@@ -14,7 +14,7 @@ public class UserServiceImpl implements AbstractService<User> {
   private final AbstractRepository<User> jdbcRepository;
 
   @Override
-  public void createUser(User user) {
+  public void create(User user) {
     jdbcRepository.create(user);
   }
 
