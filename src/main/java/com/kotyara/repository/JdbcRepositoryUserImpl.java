@@ -1,6 +1,7 @@
 package com.kotyara.repository;
 
 import com.kotyara.api.entity.User;
+import com.kotyara.api.entity.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,7 +14,7 @@ import java.util.List;
 @Component
 public final class JdbcRepositoryUserImpl implements AbstractRepository<User> {
 
-  private final RowMapper<User> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> new User(resultSet.getInt("id"), resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("email"), resultSet.getString("password"));
+  private final RowMapper<User> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> new User(resultSet.getInt("id"), resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("email"), resultSet.getString("password"), UserRole.valueOf(resultSet.getString("role")));
 
   private final JdbcTemplate jdbcTemplate;
 
