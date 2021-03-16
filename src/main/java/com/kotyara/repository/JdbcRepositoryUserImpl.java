@@ -30,10 +30,11 @@ public final class JdbcRepositoryUserImpl implements AbstractRepository<User> {
 
   @Override
   public void create(User user) {
-    jdbcTemplate.update("INSERT INTO user(firstName, lastName, email, password) VALUES (?, ?, ?, ?)",
+    jdbcTemplate.update("INSERT INTO user(firstName, lastName, email, password, role) VALUES (?, ?, ?, ?, ?)",
                         user.getFirstName(),
-                        user.getSecondName(),
+                        user.getLastName(),
                         user.getEmail(),
-                        user.getPassword());
+                        user.getPassword(),
+                        user.getRole());
   }
 }
