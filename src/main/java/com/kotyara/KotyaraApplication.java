@@ -1,7 +1,6 @@
 package com.kotyara;
 
 import com.kotyara.api.entity.User;
-import com.kotyara.api.entity.UserRole;
 import com.kotyara.api.service.AbstractService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class KotyaraApplication {
 	public void postConstruct() {
 		List<User> users = userService.getAll();
 		for(User user: users){
-			log.info(String.format("\n Name: %s \n LastName: %s \n E-mail: %s", user.getFirstName(), user.getSecondName(), user.getEmail()));
+			log.info(String.format("\n Name: %s \n LastName: %s \n E-mail: %s", user.getFirstName(), user.getLastName(), user.getEmail()));
 		}
 	}
 }
