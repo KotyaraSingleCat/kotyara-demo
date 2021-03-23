@@ -4,13 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Data
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
   @Id

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -19,10 +20,14 @@ public class UserRole {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
 
-  @OneToOne(mappedBy = "role")
+  @Enumerated(EnumType.STRING)
+  @Column(name = "role", nullable = false)
+  private Roles role;
+
+  @OneToOne(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
   private User user;
 
-  @ManyToMany(cascade = { CascadeType.ALL })
+  @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
   @JoinTable(
       name = "action_points_roles",
       joinColumns = { @JoinColumn(name = "role_id") },

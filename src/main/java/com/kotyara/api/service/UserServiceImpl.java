@@ -1,5 +1,6 @@
 package com.kotyara.api.service;
 
+import com.kotyara.api.dto.UserDTO;
 import com.kotyara.api.entity.User;
 import com.kotyara.repository.AbstractRepository;
 import lombok.AllArgsConstructor;
@@ -9,12 +10,12 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class UserServiceImpl implements AbstractService<User> {
+public class UserServiceImpl implements AbstractService<User, UserDTO> {
 
-  private final AbstractRepository<User> jdbcRepository;
+  private final AbstractRepository<User, UserDTO> jdbcRepository;
 
   @Override
-  public void create(User user) {
+  public void create(UserDTO user) {
     jdbcRepository.create(user);
   }
 
