@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -22,8 +21,7 @@ public class ActionPoints {
   private int id;
 
   @Column(name = "point", nullable = false, unique = true)
-  @Enumerated(EnumType.STRING)
-  private Points point;
+  private String point;
 
   @ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "actionPoints")
   private List<UserRole> roles;

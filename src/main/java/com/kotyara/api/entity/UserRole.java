@@ -20,9 +20,8 @@ public class UserRole {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
 
-  @Enumerated(EnumType.STRING)
   @Column(name = "role", nullable = false)
-  private Roles role;
+  private String role;
 
   @OneToOne(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
   private User user;

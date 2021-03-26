@@ -1,6 +1,5 @@
 package com.kotyara.repository;
 
-import com.kotyara.api.dto.UserDTO;
 import com.kotyara.api.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public class JdbcRepositoryUserImpl implements AbstractRepository<User, UserDTO> {
+public class JpaRepositoryUserImpl implements AbstractRepository<User> {
 
   @Autowired
   EntityManager entityManager;
@@ -27,13 +26,18 @@ public class JdbcRepositoryUserImpl implements AbstractRepository<User, UserDTO>
 
   @Transactional
   @Override
-  public void create(UserDTO user) {
+  public void create(User user) {
     entityManager.createNativeQuery("INSERT INTO users (firstName, lastName, email, password, role_id) VALUES (?,?,?,?,?)")
         .setParameter(1, user.getFirstName())
         .setParameter(2, user.getLastName())
         .setParameter(3, user.getEmail())
         .setParameter(4, user.getPassword())
-        .setParameter(5, user.getRole_id())
+        .setParameter(5, user.getRole().getId())
         .executeUpdate();
+  }
+
+  @Override
+  public User getById(int id) {
+    return entityManager.find(User.class, id);
   }
 }

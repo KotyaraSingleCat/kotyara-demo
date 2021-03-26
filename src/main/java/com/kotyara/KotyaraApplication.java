@@ -24,15 +24,15 @@ public class KotyaraApplication {
 		SpringApplication.run(KotyaraApplication.class, args);
 	}
 
-	@PostConstruct
-	public void postConstruct() {
-//		userService.create(new UserDTO("Karl", "Bash", "karlo4.ev@gmail.com", "123678", 2));
-		List<User> users = userService.getAll();
-		for(User user: users){
-			log.info(String.format("\n Name: %s \n LastName: %s \n E-mail: %s \n Role: %s \n Action Points: ", user.getFirstName(), user.getLastName(), user.getEmail(),user.getRole().getRole()));
-			for (ActionPoints actionPoint: user.getRole().getActionPoints()){
-				log.info(actionPoint.getPoint().name());
-			}
-		}
-	}
+//	@PostConstruct
+//	public void postConstruct() {
+//		userService.create(new UserDTO("Kate", "Babanina", "babanina.ev@gmail.com", "123678", 1));
+////		List<User> users = userService.getAll();
+////		for(User user: users){
+////			log.info(String.format("\n Name: %s \n LastName: %s \n E-mail: %s \n Role: %s \n Action Points: ", user.getFirstName(), user.getLastName(), user.getEmail(),user.getRole().getRole()));
+////			for (ActionPoints actionPoint: user.getRole().getActionPoints()){
+////				log.info(actionPoint.getPoint());
+////			}
+////		}
+//	}
 }
