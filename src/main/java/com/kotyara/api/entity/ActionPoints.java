@@ -1,6 +1,7 @@
 package com.kotyara.api.entity;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -14,7 +15,8 @@ public class ActionPoints {
 
   @Id
   @Column(name = "id", nullable = false)
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+  @GenericGenerator(name = "native", strategy = "native")
   private int id;
 
   @Column(name = "point", nullable = false, unique = true)

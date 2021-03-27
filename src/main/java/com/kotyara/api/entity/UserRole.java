@@ -1,6 +1,7 @@
 package com.kotyara.api.entity;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +16,8 @@ public class UserRole {
 
   @Id
   @Column(name = "id", nullable = false)
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+  @GenericGenerator(name = "native", strategy = "native")
   private int id;
 
   @Column(name = "role", nullable = false)

@@ -1,11 +1,11 @@
 package com.kotyara.repository;
 
 import com.kotyara.api.entity.User;
+import com.kotyara.api.entity.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
-//import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
 import javax.persistence.TypedQuery;
@@ -30,15 +30,9 @@ public class JpaRepositoryUserImpl implements AbstractRepository<User> {
   @Transactional
   @Override
   public void create(User user) {
-    //сделать через persist
-    entityManager
-        .createNativeQuery("INSERT INTO users (firstName, lastName, email, password, role_id) VALUES (?,?,?,?,?)")
-        .setParameter(1, user.getFirstName())
-        .setParameter(2, user.getLastName())
-        .setParameter(3, user.getEmail())
-        .setParameter(4, user.getPassword())
-        .setParameter(5, user.getRole().getId())
-        .executeUpdate();
+    UserRole role = entityManager.find(UserRole.class, user.getRole().getId());
+    user.setRole(role);
+    entityManager.persist(user);
   }
 
   @Override
