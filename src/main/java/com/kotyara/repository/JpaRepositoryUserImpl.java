@@ -2,8 +2,10 @@ package com.kotyara.repository;
 
 import com.kotyara.api.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
+//import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
 import javax.persistence.TypedQuery;
@@ -16,6 +18,7 @@ public class JpaRepositoryUserImpl implements AbstractRepository<User> {
   @Autowired
   EntityManager entityManager;
 
+  @EntityGraph(value = "graph.UserRoleActionPoint", type = EntityGraph.EntityGraphType.LOAD)
   @Transactional
   @Override
   public List<User> getAll() {
@@ -27,7 +30,9 @@ public class JpaRepositoryUserImpl implements AbstractRepository<User> {
   @Transactional
   @Override
   public void create(User user) {
-    entityManager.createNativeQuery("INSERT INTO users (firstName, lastName, email, password, role_id) VALUES (?,?,?,?,?)")
+    //сделать через persist
+    entityManager
+        .createNativeQuery("INSERT INTO users (firstName, lastName, email, password, role_id) VALUES (?,?,?,?,?)")
         .setParameter(1, user.getFirstName())
         .setParameter(2, user.getLastName())
         .setParameter(3, user.getEmail())

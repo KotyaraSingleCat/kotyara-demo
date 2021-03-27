@@ -1,16 +1,13 @@
 package com.kotyara.api.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "action_points")
 public class ActionPoints {
@@ -22,7 +19,4 @@ public class ActionPoints {
 
   @Column(name = "point", nullable = false, unique = true)
   private String point;
-
-  @ManyToMany(cascade = { CascadeType.ALL }, mappedBy = "actionPoints")
-  private List<UserRole> roles;
 }

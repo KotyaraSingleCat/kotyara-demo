@@ -34,10 +34,10 @@ public class UserServiceImpl implements AbstractService<User, UserDTO> {
   private User convertToEntity(UserDTO userDTO){
     UserRole role = new UserRole();
     role.setId(userDTO.getRole_id());
-    User user = new User(0, userDTO.getFirstName(),
+    User user = new User(null, userDTO.getFirstName(),
                           userDTO.getLastName(),
                           userDTO.getEmail(),
-                          userDTO.getEmail(),
+                          userDTO.getPassword(),
                           role);
     return user;
   }

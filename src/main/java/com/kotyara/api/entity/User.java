@@ -4,6 +4,18 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@NamedEntityGraph(
+    name = "graph.UserRole",
+    attributeNodes = @NamedAttributeNode(value = "role")
+)
+@NamedEntityGraph(
+    name = "graph.UserRoleActionPoint",
+    attributeNodes = @NamedAttributeNode(value = "role", subgraph = "subgraph.role"),
+    subgraphs = {
+        @NamedSubgraph(name="subgraph.role", attributeNodes = @NamedAttributeNode(value = "actionPoints"))
+    }
+)
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -14,7 +26,7 @@ public class User {
   @Id
   @Column(name = "id", nullable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private Integer id;
 
   @Column(name = "firstName", nullable = false)
   private String firstName;
@@ -28,7 +40,7 @@ public class User {
   @Column(name = "password", nullable = false)
   private String password;
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinColumn(name = "role_id", referencedColumnName = "id")
   private UserRole role;
 }
