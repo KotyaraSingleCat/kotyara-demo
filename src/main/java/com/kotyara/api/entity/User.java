@@ -2,27 +2,45 @@ package com.kotyara.api.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+
+@NamedEntityGraph(
+    name = "graph.UserRole",
+    attributeNodes = @NamedAttributeNode(value = "role")
+)
+@NamedEntityGraph(
+    name = "graph.UserRoleActionPoint",
+    attributeNodes = @NamedAttributeNode(value = "role", subgraph = "subgraph.role"),
+    subgraphs = {
+        @NamedSubgraph(name="subgraph.role", attributeNodes = @NamedAttributeNode(value = "actionPoints"))
+    }
+)
+@EqualsAndHashCode(of = "id")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 @Data
+@Table(name = "users")
 public class User {
 
-  private int id;
+  @Id
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Integer id;
 
+  @Column(name = "firstName", nullable = false)
   private String firstName;
 
-  private String secondName;
+  @Column(name = "lastName", nullable = false)
+  private String lastName;
 
+  @Column(name = "email", nullable = false, unique = true)
   private String email;
 
+  @Column(name = "password", nullable = false)
   private String password;
 
+  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinColumn(name = "role_id", referencedColumnName = "id")
   private UserRole role;
-
-  public User(int id, String firstName, String secondName, String email, String password, UserRole role) {
-    this.id = id;
-    this.firstName = firstName;
-    this.secondName = secondName;
-    this.email = email;
-    this.password = password;
-    this.role = role;
-  }
 }

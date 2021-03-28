@@ -6,4 +6,6 @@ public interface AbstractRepository<T> {
   List<T> getAll();
 
   void create(T t);
+
+  T getById(int id);
 }

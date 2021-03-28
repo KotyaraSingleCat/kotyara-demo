@@ -1,5 +1,7 @@
 package com.kotyara;
 
+import com.kotyara.api.dto.UserDTO;
+import com.kotyara.api.entity.ActionPoints;
 import com.kotyara.api.entity.User;
 import com.kotyara.api.entity.UserRole;
 import com.kotyara.api.service.AbstractService;
@@ -22,11 +24,15 @@ public class KotyaraApplication {
 		SpringApplication.run(KotyaraApplication.class, args);
 	}
 
-	@PostConstruct
-	public void postConstruct() {
-		List<User> users = userService.getAll();
-		for(User user: users){
-			log.info(String.format("\n Name: %s \n LastName: %s \n E-mail: %s", user.getFirstName(), user.getSecondName(), user.getEmail()));
-		}
-	}
+//	@PostConstruct
+//	public void postConstruct() {
+//		userService.create(new UserDTO("Kate", "Babanina", "babanina.ev@gmail.com", "123678", 1));
+////		List<User> users = userService.getAll();
+////		for(User user: users){
+////			log.info(String.format("\n Name: %s \n LastName: %s \n E-mail: %s \n Role: %s \n Action Points: ", user.getFirstName(), user.getLastName(), user.getEmail(),user.getRole().getRole()));
+////			for (ActionPoints actionPoint: user.getRole().getActionPoints()){
+////				log.info(actionPoint.getPoint());
+////			}
+////		}
+//	}
 }
