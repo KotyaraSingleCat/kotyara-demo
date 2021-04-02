@@ -1,7 +1,7 @@
 package com.kotyara.api.entity;
 
 import lombok.*;
-
+import java.util.List;
 import javax.persistence.*;
 
 @NamedEntityGraph(
@@ -43,4 +43,7 @@ public class User {
   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinColumn(name = "role_id", referencedColumnName = "id")
   private UserRole role;
+
+  @OneToMany(mappedBy="reporter")
+  private List<Ticket> tickets;
 }

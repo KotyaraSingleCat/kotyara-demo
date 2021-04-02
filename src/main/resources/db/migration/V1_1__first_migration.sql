@@ -16,6 +16,23 @@ create table action_points
         unique (point)
 );
 
+create table tickets
+(
+    id int auto_increment,
+    name varchar(50) not null,
+    user_id int not null,
+    status varchar(30) not null,
+    priority varchar(30) not null,
+    time_spent varchar(30) not null,
+    time_estimated varchar(30) not null,
+    created_date date not null,
+    type varchar(30) not null,
+    constraint id
+        primary key (id),
+    constraint user_id FOREIGN KEY (user_id)
+    references users(id)
+);
+
 create table action_points_roles
 (
     id              int auto_increment
