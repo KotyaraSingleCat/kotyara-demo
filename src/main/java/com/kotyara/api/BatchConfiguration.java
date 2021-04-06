@@ -24,6 +24,12 @@ import javax.sql.DataSource;
 @EnableBatchProcessing
 public class BatchConfiguration {
 
+  /**
+   * Read all tickets from database. Maybe should read only time?
+   * Create in TicketService method.
+   * @param dataSource - connection to database
+   * @return
+   */
   @Bean
   public ItemReader<Ticket> reader(DataSource dataSource) {
     return new JdbcCursorItemReaderBuilder<Ticket>()
@@ -34,16 +40,25 @@ public class BatchConfiguration {
         .build();
   }
 
+  /**
+   * Processor which will calculated time.
+   * @return
+   */
   @Bean
   public ItemProcessor<Ticket, Ticket> processor() {
     return new TimeEstimatedItemProcessor();
   }
 
+  /**
+   * Update ticket information in database.
+   * @param dataSource
+   * @return
+   */
   @Bean
   public ItemWriter<Ticket> writer(DataSource dataSource) {
     JdbcBatchItemWriter<Ticket> writer = new JdbcBatchItemWriter<>();
     writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Ticket>());
-    writer.setSql("INSERT INTO people (first_name, last_name) VALUES (:firstName, :lastName)");
+    writer.setSql("UPDATE tickets SET time_estimated = ? WHERE id = ?");
     writer.setDataSource(dataSource);
     return writer;
   }
