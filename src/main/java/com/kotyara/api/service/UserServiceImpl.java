@@ -6,6 +6,7 @@ import com.kotyara.api.entity.UserRole;
 import com.kotyara.repository.AbstractRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements AbstractService<User, UserDTO> {
+
   @Autowired
+  @Qualifier("jpaUserRepository")
   private final AbstractRepository<User> jpaRepository;
 
   @Override
@@ -29,6 +32,11 @@ public class UserServiceImpl implements AbstractService<User, UserDTO> {
   @Override
   public User getById(int id) {
     return jpaRepository.getById(id);
+  }
+
+  @Override
+  public void remove(int id) {
+
   }
 
   private User convertToEntity(UserDTO userDTO){
