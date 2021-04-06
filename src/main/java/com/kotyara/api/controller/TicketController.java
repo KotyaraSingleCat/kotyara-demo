@@ -1,9 +1,7 @@
 package com.kotyara.api.controller;
 
 import com.kotyara.api.dto.TicketDTO;
-import com.kotyara.api.dto.UserDTO;
 import com.kotyara.api.entity.Ticket;
-import com.kotyara.api.entity.User;
 import com.kotyara.api.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,4 +36,6 @@ public class TicketController {
     ticketService.create(ticketDTO);
   }
 
+  @DeleteMapping("/{id}")
+  public void delete(@PathVariable int id){ ticketService.remove(id); }
 }

@@ -37,9 +37,11 @@ public class JpaRepositoryTicketImpl implements AbstractRepository<Ticket> {
     return entityManager.find(Ticket.class, id);
   }
 
+  @Transactional
   @Override
   public void remove(int id) {
     Ticket ticket = entityManager.find(Ticket.class, id);
     entityManager.remove(ticket);
+    entityManager.flush();
   }
 }
