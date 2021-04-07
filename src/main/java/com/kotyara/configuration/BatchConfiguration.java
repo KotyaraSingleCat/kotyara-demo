@@ -12,9 +12,7 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.ItemPreparedStatementSetter;
-import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +37,7 @@ public class BatchConfiguration {
     return new JdbcCursorItemReaderBuilder<Ticket>()
         .name("cursorItemReader")
         .dataSource(dataSource)
-        .sql("SELECT * FROM tickets")
+        .sql("SELECT id, created_date, status, time_estimated FROM tickets")
         .rowMapper(new BeanPropertyRowMapper<>(Ticket.class))
         .build();
   }
