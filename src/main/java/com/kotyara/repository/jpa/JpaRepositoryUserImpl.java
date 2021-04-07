@@ -1,7 +1,9 @@
-package com.kotyara.repository;
+package com.kotyara.repository.jpa;
 
+import com.kotyara.api.entity.Ticket;
 import com.kotyara.api.entity.User;
 import com.kotyara.api.entity.UserRole;
+import com.kotyara.repository.AbstractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
@@ -12,7 +14,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Repository
+@Repository("jpaUserRepository")
 public class JpaRepositoryUserImpl implements AbstractRepository<User> {
 
   @Autowired
@@ -38,5 +40,11 @@ public class JpaRepositoryUserImpl implements AbstractRepository<User> {
   @Override
   public User getById(int id) {
     return entityManager.find(User.class, id);
+  }
+
+  @Override
+  public void remove(int id) {
+    User user = entityManager.find(User.class, id);
+    entityManager.remove(user);
   }
 }

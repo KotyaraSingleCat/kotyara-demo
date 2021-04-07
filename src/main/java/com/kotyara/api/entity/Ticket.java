@@ -23,7 +23,7 @@ public class Ticket {
 
   private String description;
 
-  @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+  @ManyToOne
   @JoinColumn(name="user_id", nullable=false)
   private User reporter;
 
@@ -33,7 +33,7 @@ public class Ticket {
   @Column(name = "priority", nullable = false)
   private String priority;
 
-  @Column(name="time_spent", nullable = false)
+  @Column(name="time_spent")
   private String timeSpent;
 
   @Column(name="time_estimated", nullable = false)
