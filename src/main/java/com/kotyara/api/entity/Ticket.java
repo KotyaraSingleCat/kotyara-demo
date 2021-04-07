@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -40,7 +40,7 @@ public class Ticket {
   private String estimated;
 
   @Column(name = "created_date", nullable = false)
-  private LocalDate createdDate;
+  private LocalDateTime createdDate;
 
   @Column(name="type", nullable = false)
   private String type;

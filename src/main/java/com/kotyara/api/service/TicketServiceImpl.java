@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -50,7 +51,7 @@ public class TicketServiceImpl implements AbstractService<Ticket, TicketDTO> {
                                   ticketDTO.getPriority(),
                                   ticketDTO.getTimeSpent(),
                                   ticketDTO.getEstimated(),
-                                  LocalDate.parse(ticketDTO.getCreatedDate()),
+                                  LocalDateTime.parse(ticketDTO.getCreatedDate()),
                                   ticketDTO.getType());
     return ticket;
   }

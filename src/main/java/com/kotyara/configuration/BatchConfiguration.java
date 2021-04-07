@@ -1,6 +1,8 @@
-package com.kotyara.api;
+package com.kotyara.configuration;
 
+import com.kotyara.api.TimeEstimatedItemProcessor;
 import com.kotyara.api.entity.Ticket;
+import com.kotyara.api.service.TicketPreparedStatementSetter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -11,7 +13,9 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
+import org.springframework.batch.item.database.ItemPreparedStatementSetter;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
+import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,11 +60,12 @@ public class BatchConfiguration {
    */
   @Bean
   public ItemWriter<Ticket> writer(DataSource dataSource) {
-    JdbcBatchItemWriter<Ticket> writer = new JdbcBatchItemWriter<>();
-    writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Ticket>());
-    writer.setSql("UPDATE tickets SET time_estimated = ? WHERE id = ?");
-    writer.setDataSource(dataSource);
-    return writer;
+    ItemPreparedStatementSetter<Ticket> valueSetter = new TicketPreparedStatementSetter();
+    return new JdbcBatchItemWriterBuilder<Ticket>()
+        .dataSource(dataSource)
+        .sql("UPDATE * SET status = ? WHERE id = ?")
+        .itemPreparedStatementSetter(valueSetter)
+        .build();
   }
 
   @Bean
