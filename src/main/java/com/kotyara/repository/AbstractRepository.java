@@ -8,4 +8,6 @@ public interface AbstractRepository<T> {
   void create(T t);
 
   T getById(int id);
+
+  void remove(int id);
 }
