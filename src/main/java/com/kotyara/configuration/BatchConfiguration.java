@@ -4,10 +4,12 @@ import com.kotyara.api.TimeEstimatedItemProcessor;
 import com.kotyara.api.entity.Ticket;
 import com.kotyara.api.service.TicketPreparedStatementSetter;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
@@ -19,11 +21,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.sql.DataSource;
 
 @Configuration
 @EnableBatchProcessing
+@EnableScheduling
 public class BatchConfiguration {
 
   /**
@@ -61,14 +65,14 @@ public class BatchConfiguration {
     ItemPreparedStatementSetter<Ticket> valueSetter = new TicketPreparedStatementSetter();
     return new JdbcBatchItemWriterBuilder<Ticket>()
         .dataSource(dataSource)
-        .sql("UPDATE * SET status = ? WHERE id = ?")
+        .sql("UPDATE tickets SET status = ? WHERE id = ?")
         .itemPreparedStatementSetter(valueSetter)
         .build();
   }
 
   @Bean
-  public Job importUserJob(JobBuilderFactory jobs, Step s1) {
-    return jobs.get("importUserJob")
+  public Job importTicketJob(JobBuilderFactory jobs, Step s1) {
+    return jobs.get("importTicketJob")
         .incrementer(new RunIdIncrementer())
         .flow(s1)
         .end()
@@ -79,6 +83,7 @@ public class BatchConfiguration {
   public Step step1(StepBuilderFactory stepBuilderFactory, ItemReader<Ticket> reader,
       ItemWriter<Ticket> writer, ItemProcessor<Ticket, Ticket> processor) {
     return stepBuilderFactory.get("step1")
+        .allowStartIfComplete(true)
         .<Ticket, Ticket> chunk(10)
         .reader(reader)
         .processor(processor)

@@ -63,7 +63,7 @@ public class TicketServiceImpl implements AbstractService<Ticket, TicketDTO> {
         ticket.getStatus(),
         ticket.getPriority(),
         ticket.getTimeSpent(),
-        ticket.getEstimated(),
+        ticket.getTimeEstimated(),
         ticket.getCreatedDate().toString(),
         ticket.getType());
     return ticketDTO;

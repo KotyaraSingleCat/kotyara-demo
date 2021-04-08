@@ -37,12 +37,11 @@ public class Ticket {
   private String timeSpent;
 
   @Column(name="time_estimated", nullable = false)
-  private String estimated;
+  private String timeEstimated;
 
   @Column(name = "created_date", nullable = false)
   private LocalDateTime createdDate;
 
   @Column(name="type", nullable = false)
   private String type;
-
 }

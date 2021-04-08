@@ -14,7 +14,7 @@ public class TimeEstimatedItemProcessor implements ItemProcessor<Ticket, Ticket>
   public Ticket process(Ticket ticket) {
 
     Pattern p = Pattern.compile("(\\d+\\s[hmds])");
-    String time_taken = ticket.getEstimated();
+    String time_taken = ticket.getTimeEstimated();
     LocalDateTime date_of_creation = ticket.getCreatedDate();
     Matcher m = p.matcher(time_taken);
     while (m.find()) {
@@ -28,7 +28,7 @@ public class TimeEstimatedItemProcessor implements ItemProcessor<Ticket, Ticket>
         date_of_creation = date_of_creation.plusSeconds(Long.parseLong(Arrays.stream(m.group().split("\\s[s]")).findFirst().get()));
     }
 
-    if(LocalDateTime.now().isAfter(date_of_creation))
+    if(!ticket.getStatus().equals("CLOSED") && LocalDateTime.now().isAfter(date_of_creation))
       ticket.setStatus("EXPIRED");
 
     return ticket;
