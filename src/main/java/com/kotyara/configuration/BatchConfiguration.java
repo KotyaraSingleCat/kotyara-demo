@@ -15,6 +15,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.ItemPreparedStatementSetter;
+import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +30,6 @@ import javax.sql.DataSource;
 @EnableBatchProcessing
 @EnableScheduling
 public class BatchConfiguration {
-
   /**
    * Read all tickets from database. Maybe should read only time?
    * Create in TicketService method.
