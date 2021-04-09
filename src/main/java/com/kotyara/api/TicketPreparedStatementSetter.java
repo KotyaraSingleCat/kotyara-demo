@@ -1,4 +1,4 @@
-package com.kotyara.api.service;
+package com.kotyara.api;
 
 import com.kotyara.api.entity.Ticket;
 import org.springframework.batch.item.database.ItemPreparedStatementSetter;

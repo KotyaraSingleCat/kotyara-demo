@@ -5,6 +5,7 @@ import com.kotyara.api.entity.User;
 import com.kotyara.api.entity.UserRole;
 import com.kotyara.repository.AbstractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Primary
 @Repository("jpaUserRepository")
 public class JpaRepositoryUserImpl implements AbstractRepository<User> {
 

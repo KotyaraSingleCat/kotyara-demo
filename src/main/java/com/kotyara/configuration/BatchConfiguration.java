@@ -2,20 +2,17 @@ package com.kotyara.configuration;
 
 import com.kotyara.api.TimeEstimatedItemProcessor;
 import com.kotyara.api.entity.Ticket;
-import com.kotyara.api.service.TicketPreparedStatementSetter;
+import com.kotyara.api.TicketPreparedStatementSetter;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.ItemPreparedStatementSetter;
-import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
@@ -27,8 +24,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableBatchProcessing
 @EnableScheduling
+@EnableBatchProcessing
 public class BatchConfiguration {
   /**
    * Read all tickets from database. Maybe should read only time?
