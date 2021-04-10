@@ -2,7 +2,7 @@ package com.kotyara.repository.jdbc;
 
 import com.kotyara.api.entity.User;
 import com.kotyara.api.entity.UserRole;
-import com.kotyara.repository.AbstractRepository;
+import com.kotyara.api.abstractcrud.repository.AbstractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

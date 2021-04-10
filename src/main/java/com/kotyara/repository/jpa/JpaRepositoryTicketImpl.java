@@ -1,8 +1,9 @@
 package com.kotyara.repository.jpa;
 
 import com.kotyara.api.entity.Ticket;
-import com.kotyara.repository.AbstractRepository;
+import com.kotyara.api.abstractcrud.repository.AbstractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Primary
 @Repository("jpaTicketRepository")
 public class JpaRepositoryTicketImpl implements AbstractRepository<Ticket> {
 

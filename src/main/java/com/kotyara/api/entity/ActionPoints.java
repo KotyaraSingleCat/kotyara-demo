@@ -2,6 +2,7 @@ package com.kotyara.api.entity;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "action_points")
+@Immutable
 public class ActionPoints {
 
   @Id

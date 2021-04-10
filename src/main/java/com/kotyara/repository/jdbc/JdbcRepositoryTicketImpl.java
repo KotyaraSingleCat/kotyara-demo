@@ -1,7 +1,7 @@
 package com.kotyara.repository.jdbc;
 
 import com.kotyara.api.entity.Ticket;
-import com.kotyara.repository.AbstractRepository;
+import com.kotyara.api.abstractcrud.repository.AbstractRepository;
 
 import java.util.List;
 
