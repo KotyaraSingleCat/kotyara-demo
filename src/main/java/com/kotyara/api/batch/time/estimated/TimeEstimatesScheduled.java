@@ -1,4 +1,4 @@
-package com.kotyara.api;
+package com.kotyara.api.batch.time.estimated;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;

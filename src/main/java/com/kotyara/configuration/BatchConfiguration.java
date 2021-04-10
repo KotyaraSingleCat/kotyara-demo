@@ -1,8 +1,8 @@
 package com.kotyara.configuration;
 
-import com.kotyara.api.TimeEstimatedItemProcessor;
+import com.kotyara.api.batch.time.estimated.TimeEstimatedItemProcessor;
 import com.kotyara.api.entity.Ticket;
-import com.kotyara.api.TicketPreparedStatementSetter;
+import com.kotyara.api.batch.time.estimated.TicketPreparedStatementSetter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
