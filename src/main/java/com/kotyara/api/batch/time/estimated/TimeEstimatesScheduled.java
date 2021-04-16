@@ -26,7 +26,7 @@ public class TimeEstimatesScheduled {
     this.jobLauncher = jobLauncher;
   }
 
-  @Scheduled(fixedDelay = 60000)
+  @Scheduled(cron = "0 * * * * *")
   public void runJob() throws JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException {
     JobParameters param = new JobParametersBuilder().addString("JobID", String.valueOf(System.currentTimeMillis()))
         .toJobParameters();
