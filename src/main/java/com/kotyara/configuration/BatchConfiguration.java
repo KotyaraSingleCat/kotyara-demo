@@ -1,8 +1,8 @@
 package com.kotyara.configuration;
 
+import com.kotyara.api.batch.time.estimated.TicketPreparedStatementSetter;
 import com.kotyara.api.batch.time.estimated.TimeEstimatedItemProcessor;
 import com.kotyara.api.entity.Ticket;
-import com.kotyara.api.batch.time.estimated.TicketPreparedStatementSetter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -33,6 +33,7 @@ public class BatchConfiguration {
    * @param dataSource - connection to database
    * @return
    */
+
   @Bean
   public ItemReader<Ticket> reader(DataSource dataSource) {
     return new JdbcCursorItemReaderBuilder<Ticket>()
