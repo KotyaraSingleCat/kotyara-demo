@@ -1,8 +1,8 @@
 package com.kotyara.repository.jpa;
 
+import com.kotyara.api.abstractcrud.repository.AbstractRepository;
 import com.kotyara.api.entity.User;
 import com.kotyara.api.entity.UserRole;
-import com.kotyara.api.abstractcrud.repository.AbstractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.EntityGraph;
