@@ -11,4 +11,5 @@ public interface AbstractService<Entity, DTO> {
   Entity getById(int id);
 
   void remove(int id);
+
 }

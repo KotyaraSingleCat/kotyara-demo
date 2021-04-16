@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends AbstractServiceImpl<User, UserDTO> {
 
+  private AbstractRepository<User> repository;
+
   @Autowired
   public UserServiceImpl(AbstractRepository<User> repository, AbstractConvert<User, UserDTO> converter) {
     super(repository, converter);
+    this.repository = repository;
   }
 }

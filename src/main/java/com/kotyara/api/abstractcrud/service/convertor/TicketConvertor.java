@@ -33,7 +33,8 @@ public class TicketConvertor implements AbstractConvert<Ticket, TicketDTO> {
   @Override
   public TicketDTO covertToDTO(Ticket ticket) {
 
-    TicketDTO ticketDTO = new TicketDTO(ticket.getName(),
+    TicketDTO ticketDTO = new TicketDTO(ticket.getId(),
+        ticket.getName(),
         ticket.getDescription(),
         ticket.getReporter().getId(),
         ticket.getStatus(),

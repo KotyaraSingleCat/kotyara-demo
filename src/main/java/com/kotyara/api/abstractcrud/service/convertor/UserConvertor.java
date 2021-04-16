@@ -25,7 +25,8 @@ public class UserConvertor implements AbstractConvert<User, UserDTO> {
   @Override
   public UserDTO covertToDTO(User user) {
 
-    UserDTO userDTO = new UserDTO(user.getFirstName(),
+    UserDTO userDTO = new UserDTO(user.getId(),
+        user.getFirstName(),
         user.getLastName(),
         user.getEmail(),
         user.getPassword(),

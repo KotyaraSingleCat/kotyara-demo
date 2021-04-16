@@ -48,4 +48,12 @@ public class JdbcRepositoryUserImpl implements AbstractRepository<User> {
   public void remove(int id) {
 
   }
+
+//  public User updatePassword(User user) {
+//    jdbcTemplate.update("UPDATE user SET password = ? WHERE id = ?",
+//        user.getPassword(),
+//        user.getId());
+//
+//    return user;
+//  }
 }

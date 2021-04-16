@@ -39,6 +39,7 @@ public abstract class AbstractServiceImpl<Entity, DTO> implements AbstractServic
   @Override
   public void remove(int id) { repository.remove(id); }
 
+
   private Entity convertToEntity(DTO dto){
     return converter.convertToEntity(dto);
   }

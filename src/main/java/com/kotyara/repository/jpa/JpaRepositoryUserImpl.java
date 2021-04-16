@@ -38,14 +38,25 @@ public class JpaRepositoryUserImpl implements AbstractRepository<User> {
     entityManager.persist(user);
   }
 
+  @Transactional
   @Override
   public User getById(int id) {
     return entityManager.find(User.class, id);
   }
 
+  @Transactional
   @Override
   public void remove(int id) {
     User user = entityManager.find(User.class, id);
     entityManager.remove(user);
   }
+
+//  @Transactional
+//  public User updatePassword(User user) {
+//    User findUser = entityManager.find(User.class, user.getId());
+//    entityManager.getTransaction().begin();
+//    findUser.setPassword(user.getPassword());
+//    entityManager.getTransaction().commit();
+//    return findUser;
+//  }
 }
