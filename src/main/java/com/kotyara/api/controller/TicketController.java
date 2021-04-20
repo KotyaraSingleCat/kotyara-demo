@@ -1,41 +1,24 @@
 package com.kotyara.api.controller;
 
+import com.kotyara.api.abstractcrud.controller.AbstractControllerImpl;
 import com.kotyara.api.dto.TicketDTO;
 import com.kotyara.api.entity.Ticket;
-import com.kotyara.api.service.AbstractService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import com.kotyara.api.service.TicketServiceImpl;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/ticket")
-public class TicketController {
+public class TicketController extends AbstractControllerImpl<Ticket, TicketDTO> {
 
-  @Autowired
-  private AbstractService<Ticket, TicketDTO> ticketService;
-
-  @GetMapping("/{id}")
-  public ResponseEntity<Ticket> getById(@PathVariable int id){
-    Ticket ticket = ticketService.getById(id);
-    if (ticket == null) {
-      return ResponseEntity.notFound().build();
-    } else {
-      return ResponseEntity.ok(ticket);
-    }
+  public TicketController(TicketServiceImpl service) {
+    super(service);
   }
 
-  @GetMapping
-  public List<Ticket> getAll(){
-    return ticketService.getAll();
+  @Override
+  public void create(@Validated({TicketDTO.New.class}) TicketDTO ticketDTO) {
+    super.create(ticketDTO);
   }
-
-  @PostMapping
-  public void create(@RequestBody TicketDTO ticketDTO){
-    ticketService.create(ticketDTO);
-  }
-
-  @DeleteMapping("/{id}")
-  public void delete(@PathVariable int id){ ticketService.remove(id); }
 }
