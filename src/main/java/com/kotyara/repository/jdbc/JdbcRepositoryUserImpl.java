@@ -15,7 +15,7 @@ import java.util.List;
 @Component("jdbcUserRepository")
 public class JdbcRepositoryUserImpl implements AbstractRepository<User> {
 
-  private final RowMapper<User> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> new User(resultSet.getInt("id"), resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("email"), resultSet.getString("password"), new UserRole(resultSet.getInt("role_id"), null, null));
+  private final RowMapper<User> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> new User(resultSet.getInt("id"), resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("email"), resultSet.getString("password"), new UserRole(resultSet.getInt("role_id"), null, null, null));
 
   private final JdbcTemplate jdbcTemplate;
 

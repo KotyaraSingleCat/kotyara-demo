@@ -1,12 +1,13 @@
 package com.kotyara.api.entity;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
-@NamedEntityGraph(
-    name = "graph.UserRole",
-    attributeNodes = @NamedAttributeNode(value = "role")
-)
 @NamedEntityGraph(
     name = "graph.UserRoleActionPoint",
     attributeNodes = @NamedAttributeNode(value = "role", subgraph = "subgraph.role"),
@@ -39,6 +40,7 @@ public class User {
   @Column(name = "password", nullable = false)
   private String password;
 
-  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JsonManagedReference
   private UserRole role;
 }

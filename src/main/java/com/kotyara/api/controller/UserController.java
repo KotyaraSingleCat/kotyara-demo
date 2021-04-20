@@ -4,7 +4,10 @@ import com.kotyara.api.abstractcrud.controller.AbstractControllerImpl;
 import com.kotyara.api.dto.UserDTO;
 import com.kotyara.api.entity.User;
 import com.kotyara.api.service.UserServiceImpl;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,13 +27,13 @@ public class UserController extends AbstractControllerImpl<User, UserDTO> {
     super.create(userDTO);
   }
 
-//  @PutMapping
-//  public ResponseEntity<User> updatePassword(@RequestBody UserDTO userDTO) {
-//    User user = userService.updatePassword(userDTO);
-//    if (user == null) {
-//      return ResponseEntity.notFound().build();
-//    } else {
-//      return ResponseEntity.ok(user);
-//    }
-//  }
+  @PutMapping
+  public ResponseEntity<User> updatePassword(@RequestBody UserDTO userDTO) {
+    User user = userService.updatePassword(userDTO);
+    if (user == null) {
+      return ResponseEntity.notFound().build();
+    } else {
+      return ResponseEntity.ok(user);
+    }
+  }
 }

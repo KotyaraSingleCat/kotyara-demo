@@ -1,6 +1,10 @@
 package com.kotyara.api.entity;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -22,6 +26,10 @@ public class UserRole {
 
   @Column(name = "role", nullable = false)
   private String role;
+
+  @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+  @JsonBackReference
+  private List<User> users;
 
   @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
   @JoinTable(
