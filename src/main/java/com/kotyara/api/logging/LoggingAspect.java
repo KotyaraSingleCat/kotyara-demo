@@ -28,6 +28,7 @@ public class LoggingAspect {
         ((MethodSignature) point.getSignature()).getMethod().getName(),
         System.currentTimeMillis() - start
     ));
+
     return result;
   }
 
