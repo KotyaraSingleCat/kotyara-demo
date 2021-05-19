@@ -5,8 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.3.4.RELEASE</version>
 	</parent>
 	<groupId>com</groupId>
 	<artifactId>kotyara</artifactId>
@@ -16,11 +15,15 @@
 	<properties>
 		<java.version>11</java.version>
 		<spring.batch.version>4.2.6.RELEASE</spring.batch.version>
-		<junit.version>4.11</junit.version>
+		<junit.version>4.12</junit.version>
 		<swagger.version>2.9.2</swagger.version>
 		<flyway.version>6.5.6</flyway.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-bean-validators</artifactId>
@@ -33,7 +36,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>2.2.6.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>2.2.6.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -89,6 +98,21 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${swagger.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-server</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.2</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -113,4 +137,25 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>default</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>local</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
 </project>
