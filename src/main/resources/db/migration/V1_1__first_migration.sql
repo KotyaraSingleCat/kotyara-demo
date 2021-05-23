@@ -2,7 +2,7 @@ create table roles
 (
     id   int auto_increment
         primary key,
-    role enum ('ADMIN', 'DEVELOPER', 'ANALYST') not null,
+    role enum ('ROLE_ADMIN', 'ROLE_DEVELOPER', 'ROLE_ANALYST') not null,
     constraint user_role_uindex
         unique (role)
 );
@@ -19,7 +19,7 @@ create table action_points
 create table action_points_roles
 (
     id              int auto_increment
-                       primary key,
+        primary key,
     role_id         int not null,
     action_point_id int not null,
     constraint action_points_roles_ibfk_1
@@ -38,15 +38,15 @@ create index role_id
 
 create table users
 (
-	id int auto_increment,
-	firstName varchar(30) not null,
-	lastName varchar(30) not null,
-	email varchar(60) not null,
-	password varchar(40) not null,
-	role_id int not null,
-	constraint id
-		primary key (id),
-	constraint user_email_uindex
+    id int auto_increment,
+    firstName varchar(30) not null,
+    lastName varchar(30) not null,
+    email varchar(60) not null,
+    password varchar(140) not null,
+    role_id int not null,
+    constraint id
+        primary key (id),
+    constraint user_email_uindex
         unique (email),
     FOREIGN KEY (role_id)
         REFERENCES roles(id)
@@ -68,5 +68,5 @@ create table tickets
     constraint id
         primary key (id),
     constraint user_id FOREIGN KEY (user_id)
-    references users(id)
+        references users(id)
 );

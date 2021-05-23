@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LoggingAspect {
 
-  @Pointcut("execution(* com.kotyara..*.*(..))")
+  @Pointcut("execution(* com.kotyara..*.*(..)) && !within(com.kotyara.api.security.jwt.JwtFilter)")
   private void loggingAllMethod(){
 
   }

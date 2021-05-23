@@ -40,7 +40,7 @@ public class User {
   @Column(name = "password", nullable = false)
   private String password;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
   @JsonManagedReference
   private UserRole role;
 }
