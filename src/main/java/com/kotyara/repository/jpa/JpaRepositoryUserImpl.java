@@ -3,6 +3,7 @@ package com.kotyara.repository.jpa;
 import com.kotyara.api.abstractcrud.repository.AbstractRepository;
 import com.kotyara.api.entity.User;
 import com.kotyara.api.entity.UserRole;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -51,6 +52,7 @@ public class JpaRepositoryUserImpl implements AbstractRepository<User> {
     return entityManager.find(User.class, id, properties);
 //    return entityManager.find(User.class, id);
   }
+
 
   @Transactional
   @Override
